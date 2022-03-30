@@ -5,6 +5,6 @@ docker build from the root directory
 ```docker build -t app.jar .  ```
 
 Docker compose 
-```docker compose up```
+```docker compose up --scale springboot-application=3 ```
 
 
