@@ -1,0 +1,31 @@
+version: "3"
+services:
+  postgres:
+    build: ./postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=jobrunr
+
+  springboot-application:
+    image: app.jar
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/jobrunr?useSSL=false"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "postgres"
+      ORG_JOBRUNR_DATABASE_SKIP_CREATE: "false"
+      ORG_JOBRUNR_DATABASE_TABLE_PREFIX: "demo"
+      ORG_JOBRUNR_JOB-SCHEDULER_EBABLED: "true"
+      ORG_JOBRUNR_BACKGROUND_JOB_SERVER_ENABLED: "true"
+      ORG_JOBRUNR_DASHBOARD_ENABLED: "true"
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    depends_on:
+      - postgres
+networks:
+  default:
+    driver: bridge
