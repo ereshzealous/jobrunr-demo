@@ -16,5 +16,10 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="JobRunrPro" />
+      <option name="name" value="JobRunrPro" />
+      <option name="url" value="https://repo.jobrunr.io/private-trials-202204/" />
+    </remote-repository>
   </component>
 </project>
